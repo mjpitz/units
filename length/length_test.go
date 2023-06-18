@@ -53,6 +53,7 @@ func TestLength(t *testing.T) {
 	require.Equal(t, "1μm", length.Micrometer.String())
 	require.Equal(t, "1nm", length.Nanometer.String())
 
+	require.Equal(t, "", length.Imperial.Format(0))
 	require.Equal(t, "1lea", length.Imperial.Format(length.League))
 	require.Equal(t, "1mi", length.Imperial.Format(length.Mile))
 	require.Equal(t, "1yd", length.Imperial.Format(length.Yard))
@@ -68,7 +69,9 @@ func TestLength(t *testing.T) {
 	}{
 		{"", false, 0},
 		{"10km", false, 10 * length.Kilometer},
+		{"1km1hm1dam", false, length.Kilometer + length.Hectometer + length.Decameter},
 		{"100DNE", true, 0},
+		{"BAD", true, 0},
 	}
 
 	for _, testCase := range testCases {

@@ -40,6 +40,7 @@ func TestSize(t *testing.T) {
 	require.Equal(t, 1000.0, data.Megabyte.As(data.Kilobyte))
 	require.Equal(t, 1000.0, data.Kilobyte.As(data.Byte))
 
+	require.Equal(t, "", data.BinaryIEC.Format(0))
 	require.Equal(t, "1PiB", data.BinaryIEC.Format(data.Pebibyte))
 	require.Equal(t, "1TiB", data.BinaryIEC.Format(data.Tebibyte))
 	require.Equal(t, "1GiB", data.BinaryIEC.Format(data.Gibibyte))
@@ -62,7 +63,9 @@ func TestSize(t *testing.T) {
 	}{
 		{"", false, 0},
 		{"10GiB", false, 10 * data.Gibibyte},
+		{"1GiB1MiB1KiB", false, data.Gibibyte + data.Mebibyte + data.Kibibyte},
 		{"100DNE", true, 0},
+		{"BAD", true, 0},
 	}
 
 	for _, testCase := range testCases {

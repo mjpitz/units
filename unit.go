@@ -31,6 +31,8 @@ import (
 
 var (
 	format = regexp.MustCompile("(?P<measure>[0-9]+)(?P<symbol>[a-zA-Z ]{1,6})")
+
+	ErrValueDoesNotMatchPattern = fmt.Errorf("value does not match pattern")
 )
 
 // Number defines a constraint to ensure the values provided to units are integer based (i.e. we're working with whole
@@ -57,7 +59,7 @@ type Unit[T Number] []Symbol[T]
 // abstraction is that so long as a unit shares a common base unit, multiple formats can be used to represent the
 // underlying value (for example, metric vs imperial).
 func (u Unit[T]) Format(value T) (str string) {
-	if len(u) == 0 {
+	if len(u) == 0 || value == 0 {
 		return ""
 	}
 
@@ -86,7 +88,7 @@ func (u Unit[T]) Parse(val string) (size T, err error) {
 	// todo: improve this so we don't need regex
 
 	if !format.MatchString(val) {
-		return size, fmt.Errorf("value does not match format")
+		return size, ErrValueDoesNotMatchPattern
 	}
 
 	// todo: memoize this

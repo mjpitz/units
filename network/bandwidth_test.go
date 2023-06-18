@@ -47,6 +47,7 @@ func TestBandwidth(t *testing.T) {
 	require.Equal(t, "1Kibps", network.Kibibit.String())
 	require.Equal(t, "1bps", network.Bit.String())
 
+	require.Equal(t, "", network.Decimal.Format(0))
 	require.Equal(t, "1Pbps", network.Decimal.Format(network.Petabit))
 	require.Equal(t, "1Tbps", network.Decimal.Format(network.Terabit))
 	require.Equal(t, "1Gbps", network.Decimal.Format(network.Gigabit))
@@ -64,6 +65,7 @@ func TestBandwidth(t *testing.T) {
 		{"", false, 0},
 		{"10Gibps", false, 10 * network.Gibibit},
 		{"100DNE", true, 0},
+		{"BAD", true, 0},
 	}
 
 	for _, testCase := range testCases {

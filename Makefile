@@ -16,7 +16,7 @@ doc:
 	bash ./scripts/gendoc.sh
 
 test:
-	go test -v -race -coverprofile=.coverprofile -covermode=atomic ./...
+	go test ./... -v -race -covermode=atomic -coverprofile=.coverprofile -coverpkg=./...
 
 legal: .legal
 .legal:

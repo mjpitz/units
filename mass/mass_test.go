@@ -54,6 +54,7 @@ func TestMass(t *testing.T) {
 	require.Equal(t, "1μg", mass.Microgram.String())
 	require.Equal(t, "1ng", mass.Nanogram.String())
 
+	require.Equal(t, "", mass.Imperial.Format(0))
 	require.Equal(t, "1ton", mass.Imperial.Format(mass.Ton))
 	require.Equal(t, "1cwt", mass.Imperial.Format(mass.Hundredweight))
 	require.Equal(t, "1qr", mass.Imperial.Format(mass.Quarter))
@@ -71,7 +72,9 @@ func TestMass(t *testing.T) {
 	}{
 		{"", false, 0},
 		{"10kg", false, 10 * mass.Kilogram},
+		{"1kg1hg1dag", false, mass.Kilogram + mass.Hectogram + mass.Decagram},
 		{"100DNE", true, 0},
+		{"BAD", true, 0},
 	}
 
 	for _, testCase := range testCases {

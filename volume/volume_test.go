@@ -52,6 +52,7 @@ func TestVolume(t *testing.T) {
 	require.Equal(t, "1μL", volume.Microliter.String())
 	require.Equal(t, "1nL", volume.Nanoliter.String())
 
+	require.Equal(t, "", volume.Imperial.Format(0))
 	require.Equal(t, "1gal", volume.Imperial.Format(volume.Gallon))
 	require.Equal(t, "1qt", volume.Imperial.Format(volume.Quart))
 	require.Equal(t, "1pt", volume.Imperial.Format(volume.Pint))
@@ -67,7 +68,9 @@ func TestVolume(t *testing.T) {
 	}{
 		{"", false, 0},
 		{"10kL", false, 10 * volume.Kiloliter},
+		{"1kL1hL1daL", false, volume.Kiloliter + volume.Hectoliter + volume.Decaliter},
 		{"100DNE", true, 0},
+		{"BAD", true, 0},
 	}
 
 	for _, testCase := range testCases {
