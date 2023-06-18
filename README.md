@@ -15,6 +15,13 @@ import "go.pitz.tech/units"
 
 ## Usage
 
+```go
+var (
+	// ErrValueDoesNotMatchPattern notifies the caller that the provided string text did not match our expected format.
+	ErrValueDoesNotMatchPattern = fmt.Errorf("value does not match pattern")
+)
+```
+
 #### type Number
 
 ```go
