@@ -68,6 +68,8 @@ func TestLength(t *testing.T) {
 		expected length.Length
 	}{
 		{"", false, 0},
+		{"-1km", false, -1 * length.Kilometer},
+		{"+1km", false, length.Kilometer},
 		{"10km", false, 10 * length.Kilometer},
 		{"1km1hm1dam", false, length.Kilometer + length.Hectometer + length.Decameter},
 		{"100DNE", true, 0},

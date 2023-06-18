@@ -40,7 +40,7 @@ var (
 // numbers). This makes sure we're working with whole numbers and not handling fractions internally. This forces the
 // programmer to handle all rounding and truncation.
 type Number interface {
-	constraints.Integer
+	constraints.Signed
 }
 
 // Symbol defines how various sizes should be labeled. Some values may contain multiple labels, but the preferred label
@@ -81,11 +81,20 @@ func (u Unit[T]) Format(value T) (str string) {
 
 // Parse attempts to convert the provided string value to its equivalent numeric representation.
 func (u Unit[T]) Parse(val string) (size T, err error) {
+	val = strings.TrimSpace(val)
 	if val == "" || val == "0" {
 		return 0, nil
 	}
 
-	// todo: support positive / negative
+	var factor T = 1
+	switch val[0] {
+	case '-':
+		factor = T(-1)
+		val = val[1:]
+	case '+':
+		val = val[1:]
+	}
+
 	// todo: improve this so we don't need regex
 
 	if !format.MatchString(val) {
@@ -115,5 +124,5 @@ func (u Unit[T]) Parse(val string) (size T, err error) {
 		size += T(parsed * float64(unit))
 	}
 
-	return size, nil
+	return factor * size, nil
 }

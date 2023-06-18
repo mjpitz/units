@@ -62,6 +62,8 @@ func TestSize(t *testing.T) {
 		expected data.Size
 	}{
 		{"", false, 0},
+		{"-1GiB", false, -1 * data.Gibibyte},
+		{"+1GiB", false, data.Gibibyte},
 		{"10GiB", false, 10 * data.Gibibyte},
 		{"1GiB1MiB1KiB", false, data.Gibibyte + data.Mebibyte + data.Kibibyte},
 		{"100DNE", true, 0},

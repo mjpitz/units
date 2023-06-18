@@ -67,6 +67,8 @@ func TestVolume(t *testing.T) {
 		expected volume.Volume
 	}{
 		{"", false, 0},
+		{"-1kL", false, -1 * volume.Kiloliter},
+		{"+1kL", false, volume.Kiloliter},
 		{"10kL", false, 10 * volume.Kiloliter},
 		{"1kL1hL1daL", false, volume.Kiloliter + volume.Hectoliter + volume.Decaliter},
 		{"100DNE", true, 0},

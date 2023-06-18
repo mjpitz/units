@@ -63,6 +63,8 @@ func TestBandwidth(t *testing.T) {
 		expected network.Bandwidth
 	}{
 		{"", false, 0},
+		{"-1Gibps", false, -1 * network.Gibibit},
+		{"+1Gibps", false, network.Gibibit},
 		{"10Gibps", false, 10 * network.Gibibit},
 		{"100DNE", true, 0},
 		{"BAD", true, 0},

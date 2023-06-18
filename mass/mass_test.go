@@ -71,6 +71,8 @@ func TestMass(t *testing.T) {
 		expected mass.Mass
 	}{
 		{"", false, 0},
+		{"-1kg", false, -1 * mass.Kilogram},
+		{"+1kg", false, mass.Kilogram},
 		{"10kg", false, 10 * mass.Kilogram},
 		{"1kg1hg1dag", false, mass.Kilogram + mass.Hectogram + mass.Decagram},
 		{"100DNE", true, 0},

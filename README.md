@@ -26,7 +26,7 @@ var (
 
 ```go
 type Number interface {
-	constraints.Integer
+	constraints.Signed
 }
 ```
 
