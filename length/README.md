@@ -1,7 +1,7 @@
 # length
 
 ```go
-import go.pitz.tech/units/length
+import "go.pitz.tech/units/length"
 ```
 
 ## Usage

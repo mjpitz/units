@@ -24,12 +24,13 @@ import (
 	"fmt"
 	"regexp"
 	"strconv"
+	"strings"
 
 	"golang.org/x/exp/constraints"
 )
 
 var (
-	format = regexp.MustCompile("(?P<measure>[0-9]+)(?P<symbol>[a-zA-Z ]{1,5})")
+	format = regexp.MustCompile("(?P<measure>[0-9]+)(?P<symbol>[a-zA-Z ]{1,6})")
 )
 
 // Number defines a constraint to ensure the values provided to units are integer based (i.e. we're working with whole
@@ -61,7 +62,7 @@ func (u Unit[T]) Format(value T) (str string) {
 	}
 
 	for i := len(u); value > 0 && i > 1; i-- {
-		if value > u[i-1].Size {
+		if value >= u[i-1].Size {
 			str += strconv.FormatInt(int64(value/u[i-1].Size), 10) + u[i-1].Label[0]
 			value = value % u[i-1].Size
 		}
@@ -69,7 +70,7 @@ func (u Unit[T]) Format(value T) (str string) {
 
 	if value > 0 {
 		rem := float64(value) / float64(u[0].Size)
-		str += strconv.FormatFloat(rem, 'f', 3, 64) + u[0].Label[0]
+		str += strconv.FormatFloat(rem, 'f', 0, 64) + u[0].Label[0]
 	}
 
 	return str
@@ -97,12 +98,13 @@ func (u Unit[T]) Parse(val string) (size T, err error) {
 	}
 
 	for _, match := range format.FindAllStringSubmatch(val, -1) {
-		unit, ok := idx[match[1]]
+		label := strings.TrimSpace(match[2])
+		unit, ok := idx[label]
 		if !ok {
-			return 0, fmt.Errorf("unrecognized symbol: %s", match[1])
+			return 0, fmt.Errorf("unrecognized symbol: %s", label)
 		}
 
-		parsed, err := strconv.ParseInt(match[0], 10, 64)
+		parsed, err := strconv.ParseInt(match[1], 10, 64)
 		if err != nil {
 			return 0, err
 		}

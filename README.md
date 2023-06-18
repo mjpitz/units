@@ -10,7 +10,7 @@ of its functioning, you can explore the provided packages for more specific
 information.
 
 ```go
-import go.pitz.tech/units
+import "go.pitz.tech/units"
 ```
 
 ## Usage

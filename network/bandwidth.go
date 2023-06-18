@@ -22,7 +22,6 @@ package network
 
 import (
 	"sort"
-	"strings"
 
 	"go.pitz.tech/units"
 )
@@ -38,9 +37,6 @@ func (u Bandwidth) As(other Bandwidth) float64 {
 }
 
 func (u *Bandwidth) Set(val string) error {
-	val = strings.TrimSuffix(val, "/s")
-	val = strings.TrimSuffix(val, "ps")
-
 	v, err := all.Parse(val)
 	if err != nil {
 		return err
@@ -51,7 +47,7 @@ func (u *Bandwidth) Set(val string) error {
 }
 
 func (u Bandwidth) String() string {
-	return BinaryIEC.Format(u) + "/s"
+	return BinaryIEC.Format(u)
 }
 
 const (
@@ -72,35 +68,35 @@ const (
 
 var (
 	Decimal = units.Unit[Bandwidth]{
-		{Bit, []string{"b"}},
-		{Kilobit, []string{"kb"}},
-		{Megabit, []string{"Mb"}},
-		{Gigabit, []string{"Gb"}},
-		{Terabit, []string{"Tb"}},
-		{Petabit, []string{"Pb"}},
+		{Bit, []string{"bps"}},
+		{Kilobit, []string{"kbps"}},
+		{Megabit, []string{"Mbps"}},
+		{Gigabit, []string{"Gbps"}},
+		{Terabit, []string{"Tbps"}},
+		{Petabit, []string{"Pbps"}},
 	}
 
 	BinaryIEC = units.Unit[Bandwidth]{
-		{Bit, []string{"b"}},
-		{Kibibit, []string{"Kib"}},
-		{Mebibit, []string{"Mib"}},
-		{Gibibit, []string{"Gib"}},
-		{Tebibit, []string{"Tib"}},
-		{Pebibit, []string{"Pib"}},
+		{Bit, []string{"bps"}},
+		{Kibibit, []string{"Kibps"}},
+		{Mebibit, []string{"Mibps"}},
+		{Gibibit, []string{"Gibps"}},
+		{Tebibit, []string{"Tibps"}},
+		{Pebibit, []string{"Pibps"}},
 	}
 
 	all = units.Unit[Bandwidth]{
-		{Bit, []string{"b"}},
-		{Kilobit, []string{"kb"}},
-		{Kibibit, []string{"Kib"}},
-		{Megabit, []string{"Mb"}},
-		{Mebibit, []string{"Mib"}},
-		{Gigabit, []string{"Gb"}},
-		{Gibibit, []string{"Gib"}},
-		{Terabit, []string{"Tb"}},
-		{Tebibit, []string{"Tib"}},
-		{Petabit, []string{"Pb"}},
-		{Pebibit, []string{"Pib"}},
+		{Bit, []string{"bps"}},
+		{Kilobit, []string{"kbps"}},
+		{Kibibit, []string{"Kibps"}},
+		{Megabit, []string{"Mbps"}},
+		{Mebibit, []string{"Mibps"}},
+		{Gigabit, []string{"Gbps"}},
+		{Gibibit, []string{"Gibps"}},
+		{Terabit, []string{"Tbps"}},
+		{Tebibit, []string{"Tibps"}},
+		{Petabit, []string{"Pbps"}},
+		{Pebibit, []string{"Pibps"}},
 	}
 )
 

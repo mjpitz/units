@@ -1,7 +1,7 @@
 # network
 
 ```go
-import go.pitz.tech/units/network
+import "go.pitz.tech/units/network"
 ```
 
 ## Usage
@@ -27,21 +27,21 @@ const (
 ```go
 var (
 	Decimal = units.Unit[Bandwidth]{
-		{Bit, []string{"b"}},
-		{Kilobit, []string{"kb"}},
-		{Megabit, []string{"Mb"}},
-		{Gigabit, []string{"Gb"}},
-		{Terabit, []string{"Tb"}},
-		{Petabit, []string{"Pb"}},
+		{Bit, []string{"bps"}},
+		{Kilobit, []string{"kbps"}},
+		{Megabit, []string{"Mbps"}},
+		{Gigabit, []string{"Gbps"}},
+		{Terabit, []string{"Tbps"}},
+		{Petabit, []string{"Pbps"}},
 	}
 
 	BinaryIEC = units.Unit[Bandwidth]{
-		{Bit, []string{"b"}},
-		{Kibibit, []string{"Kib"}},
-		{Mebibit, []string{"Mib"}},
-		{Gibibit, []string{"Gib"}},
-		{Tebibit, []string{"Tib"}},
-		{Pebibit, []string{"Pib"}},
+		{Bit, []string{"bps"}},
+		{Kibibit, []string{"Kibps"}},
+		{Mebibit, []string{"Mibps"}},
+		{Gibibit, []string{"Gibps"}},
+		{Tebibit, []string{"Tibps"}},
+		{Pebibit, []string{"Pibps"}},
 	}
 )
 ```

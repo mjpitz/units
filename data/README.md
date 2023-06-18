@@ -1,7 +1,7 @@
 # data
 
 ```go
-import go.pitz.tech/units/data
+import "go.pitz.tech/units/data"
 ```
 
 ## Usage

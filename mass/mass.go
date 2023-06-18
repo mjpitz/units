@@ -105,9 +105,9 @@ var (
 	// The Troy unit of measure is frequently used when dealing with precious metals.
 	Troy = units.Unit[Mass]{
 		{Grain, []string{"gr"}},
-		{TroyPennyweight, []string{"dwt"}},
-		{TroyOunce, []string{"ozt"}},
-		{TroyPound, []string{"lbt"}},
+		{TroyPennyweight, []string{"dw t"}},
+		{TroyOunce, []string{"oz t"}},
+		{TroyPound, []string{"lb t"}},
 	}
 
 	// USCanada is a special format that uses smaller values for Hundredweight and Ton.
