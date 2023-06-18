@@ -95,6 +95,7 @@ var (
 
 func init() {
 	all = append(all, SI...)
+	all = append(all, units.Symbol[Length]{Thou, []string{"th"}})
 	all = append(all, Imperial...)
 
 	// ensure all is sorted

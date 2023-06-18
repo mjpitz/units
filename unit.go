@@ -107,12 +107,12 @@ func (u Unit[T]) Parse(val string) (size T, err error) {
 			return 0, fmt.Errorf("unrecognized symbol: %s", label)
 		}
 
-		parsed, err := strconv.ParseInt(match[1], 10, 64)
+		parsed, err := strconv.ParseFloat(match[1], 64)
 		if err != nil {
 			return 0, err
 		}
 
-		size += unit * T(parsed)
+		size += T(parsed * float64(unit))
 	}
 
 	return size, nil
