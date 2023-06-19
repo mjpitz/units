@@ -73,7 +73,7 @@ func (u Unit[T]) Format(value T) (str string) {
 
 	if value > 0 {
 		rem := float64(value) / float64(u[0].Size)
-		str += strconv.FormatFloat(rem, 'f', 0, 64) + u[0].Label[0]
+		str += strconv.FormatFloat(rem, 'f', -1, 64) + u[0].Label[0]
 	}
 
 	return str

@@ -33,6 +33,8 @@ const (
 	TroyPennyweight = 24 * Grain
 	TroyOunce       = 20 * TroyPennyweight
 	TroyPound       = 12 * TroyOunce
+
+	Slug = 14593902937205 * Nanogram
 )
 ```
 
