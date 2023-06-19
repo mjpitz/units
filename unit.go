@@ -33,7 +33,7 @@ var (
 	// ErrValueDoesNotMatchPattern notifies the caller that the provided string text did not match our expected format.
 	ErrValueDoesNotMatchPattern = fmt.Errorf("value does not match pattern")
 
-	format = regexp.MustCompile("(?P<measure>[0-9]+)(?P<symbol>[a-zA-Z ]{1,6})")
+	format = regexp.MustCompile("(?P<measure>[0-9.]+)(?P<symbol>[a-zA-Z ]{1,6})")
 )
 
 // Number defines a constraint to ensure the values provided to units are integer based (i.e. we're working with whole
