@@ -59,9 +59,14 @@ type Unit[T Number] []Symbol[T]
 // Format uses the underlying Unit to convert the provided value to a human-readable string. The benefit to this
 // abstraction is that so long as a unit shares a common base unit, multiple formats can be used to represent the
 // underlying value (for example, metric vs imperial).
-func (u Unit[T]) Format(value T) (str string) {
+func (u Unit[T]) Format(value T, opts ...Option) (str string) {
 	if len(u) == 0 || value == 0 {
 		return ""
+	}
+
+	options := Options{'f', -1}
+	for _, opt := range opts {
+		opt.Apply(&options)
 	}
 
 	for i := len(u); value > 0 && i > 1; i-- {
@@ -73,7 +78,7 @@ func (u Unit[T]) Format(value T) (str string) {
 
 	if value > 0 {
 		rem := float64(value) / float64(u[0].Size)
-		str += strconv.FormatFloat(rem, 'f', -1, 64) + u[0].Label[0]
+		str += strconv.FormatFloat(rem, options.Format, options.Precision, 64) + u[0].Label[0]
 	}
 
 	return str
@@ -96,7 +101,6 @@ func (u Unit[T]) Parse(val string) (size T, err error) {
 	}
 
 	// todo: improve this so we don't need regex
-
 	if !format.MatchString(val) {
 		return size, ErrValueDoesNotMatchPattern
 	}
@@ -125,4 +129,61 @@ func (u Unit[T]) Parse(val string) (size T, err error) {
 	}
 
 	return factor * size, nil
+}
+
+// Options defines various formatting options that can be used to tailor a given Unit.Format call including which number
+// format is used to render a floating point number and its associated precision.
+type Options struct {
+	Format    byte
+	Precision int
+}
+
+// Apply this Options configured values to the destination Options configured values.
+func (o Options) Apply(dst *Options) {
+	if o.Format > 0 {
+		dst.Format = o.Format
+	}
+
+	if o.Precision != 0 {
+		dst.Precision = o.Precision
+	}
+}
+
+// Option provides a mechanism to tune specific behaviors of the system such as formatting and numeric precision.
+type Option interface {
+	Apply(*Options)
+}
+
+// OptionFunc provides a functional way to tune specific options of the underlying behavior.
+type OptionFunc func(*Options)
+
+func (f OptionFunc) Apply(opts *Options) {
+	if f != nil {
+		f(opts)
+	}
+}
+
+// Format configures how floating point numbers are rendered. The section below can be found in strconv.FormatFloat.
+//
+// 'b' (-ddddp±ddd, a binary exponent),
+// 'e' (-d.dddde±dd, a decimal exponent),
+// 'E' (-d.ddddE±dd, a decimal exponent),
+// 'f' (-ddd.dddd, no exponent),
+// 'g' ('e' for large exponents, 'f' otherwise),
+// 'G' ('E' for large exponents, 'f' otherwise),
+// 'x' (-0xd.ddddp±ddd, a hexadecimal fraction and binary exponent), or
+// 'X' (-0Xd.ddddP±ddd, a hexadecimal fraction and binary exponent).
+//
+// For further information, please consult the strconv documents.
+func Format(fmt byte) OptionFunc {
+	return func(opts *Options) {
+		opts.Format = fmt
+	}
+}
+
+// Precision configures how many decimal places are used when rendering floating point numbers.
+func Precision(precision int) OptionFunc {
+	return func(opts *Options) {
+		opts.Precision = precision
+	}
 }
