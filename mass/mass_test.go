@@ -24,7 +24,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"go.pitz.tech/units/mass"
+	"github.com/mjpitz/units/mass"
 )
 
 func TestMass(t *testing.T) {

@@ -24,7 +24,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"go.pitz.tech/units/volume"
+	"github.com/mjpitz/units/volume"
 )
 
 func TestVolume(t *testing.T) {

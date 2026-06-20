@@ -24,7 +24,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"go.pitz.tech/units/data"
+	"github.com/mjpitz/units/data"
 )
 
 func TestSize(t *testing.T) {

@@ -23,7 +23,7 @@ package network
 import (
 	"sort"
 
-	"go.pitz.tech/units"
+	"github.com/mjpitz/units"
 )
 
 // Bandwidth refers to the maximum amount of data that can be transmitted over a network connection within a given

@@ -24,7 +24,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"go.pitz.tech/units/network"
+	"github.com/mjpitz/units/network"
 )
 
 func TestBandwidth(t *testing.T) {

@@ -1,7 +1,7 @@
 # mass
 
 ```go
-import "go.pitz.tech/units/mass"
+import "github.com/mjpitz/units/mass"
 ```
 
 ## Usage

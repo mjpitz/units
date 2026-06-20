@@ -1,4 +1,4 @@
-module go.pitz.tech/units
+module github.com/mjpitz/units
 
 go 1.19
 

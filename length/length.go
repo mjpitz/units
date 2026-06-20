@@ -23,7 +23,7 @@ package length
 import (
 	"sort"
 
-	"go.pitz.tech/units"
+	"github.com/mjpitz/units"
 )
 
 // Length is a fundamental physical quantity that measures the extent of an object or distance between two points. It is

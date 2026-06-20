@@ -18,8 +18,8 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-for pkg in $(go list all | egrep '^go.pitz.tech/units/' | awk '{print $1}'); do
-  output="./${pkg#"go.pitz.tech/units/"}/README.md"
+for pkg in $(go list all | egrep '^github.com/mjpitz/units/' | awk '{print $1}'); do
+  output="./${pkg#"github.com/mjpitz/units/"}/README.md"
   echo $output
 
   godocdown -template ./templates/docs/README.md.tmpl "$pkg" > "$output"

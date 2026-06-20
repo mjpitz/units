@@ -1,7 +1,7 @@
 # gravity
 
 ```go
-import "go.pitz.tech/units/gravity"
+import "github.com/mjpitz/units/gravity"
 ```
 
 ## Usage

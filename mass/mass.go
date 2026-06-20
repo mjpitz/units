@@ -23,7 +23,7 @@ package mass
 import (
 	"sort"
 
-	"go.pitz.tech/units"
+	"github.com/mjpitz/units"
 )
 
 // Mass is a fundamental property of matter that quantifies the amount of substance contained in an object. It

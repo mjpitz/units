@@ -7,7 +7,7 @@ formatting of measurements to improve computer use and human readability (respec
 of its functioning, you can explore the provided packages for more specific information.
 
 ```go
-import "go.pitz.tech/units"
+import "github.com/mjpitz/units"
 ```
 
 ## Usage
@@ -24,8 +24,8 @@ target), feet (size of target), and inches (drop of projectile).
 ```go
 package main
 
-import "go.pitz.tech/units/length"
-import "go.pitz.tech/units"
+import "github.com/mjpitz/units/length"
+import "github.com/mjpitz/units"
 
 var (
 	simplified = units.Unit[length.Length]{
@@ -45,7 +45,7 @@ how we might define this using the units package, we can consider the following 
 ```go
 package astronomy
 
-import "go.pitz.tech/units"
+import "github.com/mjpitz/units"
 
 type FluxDensity int64
 

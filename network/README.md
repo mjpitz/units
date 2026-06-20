@@ -1,7 +1,7 @@
 # network
 
 ```go
-import "go.pitz.tech/units/network"
+import "github.com/mjpitz/units/network"
 ```
 
 ## Usage

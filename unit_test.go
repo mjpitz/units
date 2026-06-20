@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"go.pitz.tech/units"
+	"github.com/mjpitz/units"
 )
 
 func TestOptions(t *testing.T) {

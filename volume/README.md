@@ -1,7 +1,7 @@
 # volume
 
 ```go
-import "go.pitz.tech/units/volume"
+import "github.com/mjpitz/units/volume"
 ```
 
 ## Usage

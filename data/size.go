@@ -23,7 +23,7 @@ package data
 import (
 	"sort"
 
-	"go.pitz.tech/units"
+	"github.com/mjpitz/units"
 )
 
 // Size defines how we measure digital information (typically in the number of bytes). Digital information refers to any
